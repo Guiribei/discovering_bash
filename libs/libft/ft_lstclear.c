@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 14:35:19 by coder             #+#    #+#             */
-/*   Updated: 2022/10/07 16:42:22 by guribeir         ###   ########.fr       */
+/*   Created: 2022/07/18 22:55:52 by coder             #+#    #+#             */
+/*   Updated: 2022/10/18 23:10:21 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*set_prompt(const char *name)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	char	*line;
+	t_list	*tmp;
 
-	line = readline(name);
-	if (!line)
-		return (NULL);
-	if (line && *line)
-		add_history(line);
-	return (line);
+	if (lst != NULL && del)
+	{
+		while (*lst != NULL)
+		{
+			tmp = (*lst)->next;;
+			ft_lstdelone(*lst, del);
+			*lst = tmp; 
+		}
+		*lst = NULL;
+	}
 }

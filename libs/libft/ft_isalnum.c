@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vcastilh <vcastilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 14:35:19 by coder             #+#    #+#             */
-/*   Updated: 2022/10/07 16:42:22 by guribeir         ###   ########.fr       */
+/*   Created: 2021/08/23 14:31:16 by vcastilh          #+#    #+#             */
+/*   Updated: 2021/08/23 14:42:44 by vcastilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*set_prompt(const char *name)
+int	ft_isalnum(int c)
 {
-	char	*line;
-
-	line = readline(name);
-	if (!line)
-		return (NULL);
-	if (line && *line)
-		add_history(line);
-	return (line);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }

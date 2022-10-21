@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_prompt.c                                      :+:      :+:    :+:   */
+/*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 23:09:32 by guribeir          #+#    #+#             */
-/*   Updated: 2022/10/04 00:18:00 by guribeir         ###   ########.fr       */
+/*   Created: 2022/10/07 14:57:34 by coder             #+#    #+#             */
+/*   Updated: 2022/10/13 19:24:40 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "minunit.h"
+#include "minishell.h"
 
-// MU_TEST_SUITE(prompt_output)
-// {
-// }
+void	sig_handler(int	sig)
+{
+	if (sig == SIGINT)
+	{
+		ft_putchar_fd('\n', 1);
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
+	}
+}
 
-// MU_TEST_SUITE(prompt_input)
-// {
-// }
-
-
-
-
-
-
-// MU_TEST_SUITE(test_suite)
-// {
-// 	MU_RUN_TEST(prompt_input);
-// 	MU_RUN_TEST(prompt_output);
-// }
-
-// int main(int argc, char *argv[])
-// {
-// 	MU_RUN_SUITE(test_suite);
-// 	MU_REPORT();
-// 	return MU_EXIT_CODE;
-// }
+void	set_signals(struct sigaction *act, struct sigaction *act_2)
+{
+	act->sa_handler = &sig_handler;
+	sigaction(SIGINT, act, NULL);
+	act_2->sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, act_2, NULL);
+	sigaction(SIGTSTP, act_2, NULL);
+}

@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vcastilh <vcastilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 14:35:19 by coder             #+#    #+#             */
-/*   Updated: 2022/10/07 16:42:22 by guribeir         ###   ########.fr       */
+/*   Created: 2021/08/27 14:19:14 by vcastilh          #+#    #+#             */
+/*   Updated: 2021/08/27 14:58:09 by vcastilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*set_prompt(const char *name)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*line;
+	size_t	s_len;
+	char	*ptr;
 
-	line = readline(name);
-	if (!line)
-		return (NULL);
-	if (line && *line)
-		add_history(line);
-	return (line);
+	ptr = (char *)s;
+	s_len = ft_strlen(ptr) + 1;
+	while (s_len--)
+	{
+		if (*ptr == (unsigned char)c)
+			return (ptr);
+		ptr++;
+	}
+	return (NULL);
 }

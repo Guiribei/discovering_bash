@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 14:35:19 by coder             #+#    #+#             */
-/*   Updated: 2022/10/07 16:42:22 by guribeir         ###   ########.fr       */
+/*   Created: 2022/07/18 14:57:34 by coder             #+#    #+#             */
+/*   Updated: 2022/07/18 14:58:52 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*set_prompt(const char *name)
+int	ft_lstsize(t_list *lst)
 {
-	char	*line;
+	int	size;
 
-	line = readline(name);
-	if (!line)
-		return (NULL);
-	if (line && *line)
-		add_history(line);
-	return (line);
+	size = 0;
+	while (lst != NULL)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
 }

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: guribeir <guribeir@student.42.rio>         +#+  +:+       +#+        */
+/*   By: vcastilh <vcastilh@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 14:35:19 by coder             #+#    #+#             */
-/*   Updated: 2022/10/07 16:42:22 by guribeir         ###   ########.fr       */
+/*   Created: 2021/09/02 10:30:49 by vcastilh          #+#    #+#             */
+/*   Updated: 2021/09/02 10:55:34 by vcastilh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*set_prompt(const char *name)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*line;
+	char			*str;
+	unsigned int	i;
 
-	line = readline(name);
-	if (!line)
+	str = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (! str)
 		return (NULL);
-	if (line && *line)
-		add_history(line);
-	return (line);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

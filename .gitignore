@@ -1,0 +1,4 @@
+*.o
+.gitignore
+libft.a
+minishell
