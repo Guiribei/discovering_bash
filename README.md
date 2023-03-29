@@ -1,4 +1,4 @@
-# minishell
-This project challenged us to make our own shell (a humbly little version of that). Developed in pair with @vcastilh
+# deprecated
+The updated version of this project is in my_shell repository.
 
-Still a work in progress
+See you there!
